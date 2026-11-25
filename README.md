@@ -21,9 +21,8 @@ A organização do código segue o projeto **editora-ui** desenvolvido em aula, 
 
 | Nome | GitHub |
 | --- | --- |
-| Integrante 1 | @usuario1 |
-| Integrante 2 | @usuario2 |
-| Integrante 3 | @usuario3 |
+| Integrante 1 | Flávio Ribeiro dos Santos|
+| Integrante 2 | Adrian Juan Lara da Silva|
 
 ## 4. Funcionalidades
 
