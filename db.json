@@ -1,0 +1,32 @@
+{
+  "tarefas": [
+    {
+      "id": 3,
+      "titulo": "Preparar a apresentação",
+      "descricao": "Dividir os tópicos entre os integrantes e ensaiar",
+      "prioridade": "Baixa",
+      "concluida": false
+    },
+    {
+      "id": 4,
+      "titulo": "Ler Noites Brancas",
+      "descricao": "meta 10 paginas",
+      "prioridade": "Média",
+      "concluida": false
+    },
+    {
+      "id": 5,
+      "titulo": "Estudar React",
+      "descricao": "Leitura da documentação",
+      "prioridade": "Alta",
+      "concluida": false
+    },
+    {
+      "id": 6,
+      "titulo": "Estudar PHP",
+      "descricao": "Iniciar projeto basico",
+      "prioridade": "Média",
+      "concluida": true
+    }
+  ]
+}

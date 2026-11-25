@@ -1,0 +1,24 @@
+# Dependências (são recriadas com npm install)
+node_modules/
+
+# Build de produção (recriado com npm run build)
+dist/
+dist-ssr/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações pessoais de editores
+.vscode/
+.idea/
+*.swp
+
+# Variáveis de ambiente locais
+.env
+.env.local

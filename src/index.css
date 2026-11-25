@@ -1,0 +1,30 @@
+/* Estilos próprios do TaskFlow. O restante do visual vem do Bootstrap. */
+
+body {
+  background-color: #f5f6f8;
+}
+
+/* Largura dos formulários de cadastro e edição */
+.form-tarefa {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* Tarefa concluída aparece com o título riscado e um pouco apagada */
+.tarefa-concluida .tarefa-titulo {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+/* Faixa colorida à esquerda de cada tarefa, de acordo com a prioridade */
+.prioridade-alta {
+  border-left: 5px solid #dc3545;
+}
+
+.prioridade-media {
+  border-left: 5px solid #ffc107;
+}
+
+.prioridade-baixa {
+  border-left: 5px solid #0dcaf0;
+}
