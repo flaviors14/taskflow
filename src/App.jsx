@@ -12,10 +12,10 @@ function App() {
   return (
     <BrowserRouter>
       {/* Barra superior de navegação */}
-      <nav className="navbar navbar-expand navbar-dark bg-secondary">
+      <nav className="navbar navbar-expand navbar-light bg-white border-bottom">
         <div className="container">
-          <Link to="/list" className="navbar-brand">
-            <b><i>TaskFlow</i></b>
+          <Link to="/list" className="navbar-brand fw-semibold text-dark">
+            TaskFlow
           </Link>
           <ul className="navbar-nav me-auto">
             <li className="nav-item">

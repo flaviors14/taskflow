@@ -1,4 +1,4 @@
-// Este componente lista todas as tarefas e permite abrir a edição ou excluir cada uma.
+// Este componente lista todas as tarefas em duas colunas e permite abrir a edição ou excluir cada uma.
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -69,13 +69,17 @@ function ListTarefa() {
     return { faixa: "prioridade-baixa", selo: "bg-info text-dark" };
   };
 
+  // Separa as tarefas em pendentes e concluídas para exibir em duas colunas
+  const pendentes = tarefas.filter((tarefa) => !tarefa.concluida);
+  const concluidas = tarefas.filter((tarefa) => tarefa.concluida);
+
   // --- Renderização ---
   return (
     <section>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4 className="mb-0">Tarefas</h4>
-        <Link to="/add" className="btn btn-success">
-          Nova tarefa
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h4 className="mb-0 fw-semibold">Tarefas</h4>
+        <Link to="/add" className="btn btn-primary btn-sm px-3 py-2">
+          + Nova tarefa
         </Link>
       </div>
 
@@ -96,42 +100,105 @@ function ListTarefa() {
         <p><i>Carregando tarefas...</i></p>
       ) : (
         !erro && (
-          <ul className="list-group">
-            {tarefas.length > 0 ? (
-              tarefas.map((tarefa) => (
-                <li
-                  key={tarefa.id}
-                  className={
-                    "list-group-item d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 " +
-                    classePrioridade(tarefa.prioridade).faixa +
-                    (tarefa.concluida ? " tarefa-concluida" : "")
-                  }
-                >
-                  <div>
-                    <h5 className="tarefa-titulo mb-1">{tarefa.titulo}</h5>
-                    <p className="mb-2">{tarefa.descricao}</p>
-                    <span className={"badge me-2 " + classePrioridade(tarefa.prioridade).selo}>
-                      Prioridade: {tarefa.prioridade}
-                    </span>
-                    <span className={"badge " + (tarefa.concluida ? "bg-success" : "bg-secondary")}>
-                      {tarefa.concluida ? "Concluída" : "Pendente"}
-                    </span>
-                  </div>
+          <div className="row g-4">
+            {/* Coluna 1: Pendentes (concluida === false) */}
+            <div className="col-12 col-lg-6">
+              <div className="coluna-kanban">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h6 className="mb-0 fw-semibold text-secondary">Pendentes</h6>
+                  <span className="badge rounded-pill bg-secondary">{pendentes.length}</span>
+                </div>
 
-                  <div className="text-nowrap">
-                    <Link to={"/tarefas/" + tarefa.id} className="btn btn-sm btn-warning me-2">
-                      Editar
-                    </Link>
-                    <button type="button" className="btn btn-sm btn-danger" onClick={() => deleteTarefa(tarefa)}>
-                      Excluir
-                    </button>
-                  </div>
-                </li>
-              ))
-            ) : (
-              <li className="list-group-item">Nenhuma tarefa cadastrada.</li>
-            )}
-          </ul>
+                {pendentes.length > 0 ? (
+                  <ul className="list-group gap-2">
+                    {pendentes.map((tarefa) => (
+                      <li
+                        key={tarefa.id}
+                        className={
+                          "list-group-item card-tarefa p-3 " +
+                          classePrioridade(tarefa.prioridade).faixa
+                        }
+                      >
+                        <h5 className="tarefa-titulo mb-1">{tarefa.titulo}</h5>
+                        <p className="text-muted small mb-3">{tarefa.descricao}</p>
+
+                        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                          <div>
+                            <span className={"badge rounded-pill me-2 " + classePrioridade(tarefa.prioridade).selo}>
+                              Prioridade: {tarefa.prioridade}
+                            </span>
+                            <span className="badge rounded-pill bg-secondary">
+                              Pendente
+                            </span>
+                          </div>
+
+                          <div className="text-nowrap">
+                            <Link to={"/tarefas/" + tarefa.id} className="btn btn-sm btn-warning me-2">
+                              Editar
+                            </Link>
+                            <button type="button" className="btn btn-sm btn-danger" onClick={() => deleteTarefa(tarefa)}>
+                              Excluir
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted small text-center my-4">Nenhuma tarefa pendente.</p>
+                )}
+              </div>
+            </div>
+
+            {/* Coluna 2: Concluídas (concluida === true) */}
+            <div className="col-12 col-lg-6">
+              <div className="coluna-kanban">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h6 className="mb-0 fw-semibold text-secondary">Concluídas</h6>
+                  <span className="badge rounded-pill bg-success">{concluidas.length}</span>
+                </div>
+
+                {concluidas.length > 0 ? (
+                  <ul className="list-group gap-2">
+                    {concluidas.map((tarefa) => (
+                      <li
+                        key={tarefa.id}
+                        className={
+                          "list-group-item card-tarefa p-3 tarefa-concluida " +
+                          classePrioridade(tarefa.prioridade).faixa
+                        }
+                      >
+                        <h5 className="tarefa-titulo mb-1">{tarefa.titulo}</h5>
+                        <p className="text-muted small mb-3">{tarefa.descricao}</p>
+
+                        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                          <div>
+                            <span className={"badge rounded-pill me-2 " + classePrioridade(tarefa.prioridade).selo}>
+                              Prioridade: {tarefa.prioridade}
+                            </span>
+                            <span className="badge rounded-pill bg-success">
+                              Concluída
+                            </span>
+                          </div>
+
+                          <div className="text-nowrap">
+                            <Link to={"/tarefas/" + tarefa.id} className="btn btn-sm btn-warning me-2">
+                              Editar
+                            </Link>
+                            <button type="button" className="btn btn-sm btn-danger" onClick={() => deleteTarefa(tarefa)}>
+                              Excluir
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted small text-center my-4">Nenhuma tarefa concluída.</p>
+                )}
+              </div>
+            </div>
+          </div>
         )
       )}
     </section>

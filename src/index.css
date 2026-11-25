@@ -1,30 +1,107 @@
 /* Estilos próprios do TaskFlow. O restante do visual vem do Bootstrap. */
 
 body {
-  background-color: #f5f6f8;
+  background-color: #f8fafc;
+  color: #1e293b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Largura dos formulários de cadastro e edição */
-.form-tarefa {
-  max-width: 500px;
-  margin: auto;
+/* Colunas do quadro (Pendentes e Concluídas) */
+.coluna-kanban {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.25rem;
+  min-height: 60vh;
 }
 
-/* Tarefa concluída aparece com o título riscado e um pouco apagada */
+/* Cards das tarefas */
+.card-tarefa {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-tarefa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.tarefa-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Tarefa concluída aparece com o título riscado e suavizada */
+.tarefa-concluida {
+  background-color: #fafbfc;
+}
+
 .tarefa-concluida .tarefa-titulo {
   text-decoration: line-through;
-  color: #6c757d;
+  color: #94a3b8;
 }
 
 /* Faixa colorida à esquerda de cada tarefa, de acordo com a prioridade */
 .prioridade-alta {
-  border-left: 5px solid #dc3545;
+  border-left: 4px solid #ef4444 !important;
 }
 
 .prioridade-media {
-  border-left: 5px solid #ffc107;
+  border-left: 4px solid #f59e0b !important;
 }
 
 .prioridade-baixa {
-  border-left: 5px solid #0dcaf0;
+  border-left: 4px solid #06b6d4 !important;
+}
+
+/* Selos (badges) em tons pastéis suaves */
+.badge {
+  font-weight: 600;
+  font-size: 0.74rem;
+  padding: 0.4em 0.8em;
+}
+
+.badge.bg-danger { background-color: #fee2e2 !important; color: #b91c1c !important; }
+.badge.bg-warning { background-color: #fef3c7 !important; color: #b45309 !important; }
+.badge.bg-info { background-color: #e0f2fe !important; color: #0369a1 !important; }
+.badge.bg-success { background-color: #dcfce7 !important; color: #15803d !important; }
+.badge.bg-secondary { background-color: #e2e8f0 !important; color: #475569 !important; }
+
+/* Botões sutis em tom pastel dentro dos cards */
+.card-tarefa .btn-warning {
+  background-color: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.card-tarefa .btn-warning:hover {
+  background-color: #fde68a;
+  border-color: #fcd34d;
+  color: #78350f;
+}
+
+.card-tarefa .btn-danger {
+  background-color: #fee2e2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.card-tarefa .btn-danger:hover {
+  background-color: #fecaca;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+/* Largura e card dos formulários de cadastro e edição */
+.form-tarefa {
+  max-width: 500px;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 1.75rem;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
 }
